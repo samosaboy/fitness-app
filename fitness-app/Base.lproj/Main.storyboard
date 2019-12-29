@@ -1,24 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bBR-Gt-cA2">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Calories-->
+        <scene sceneID="zWI-mi-Jad">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="Qzp-eh-Pdg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QUi-0g-yRd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="lUl-Dm-I3B"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Calories" image="hexagon" catalog="system" selectedImage="hexagon.fill" id="YOr-cG-S3I"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmM-ml-oIj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="332" y="757"/>
+        </scene>
+        <!--Activities-->
+        <scene sceneID="gq7-cq-kpA">
+            <objects>
+                <navigationController title="Activities" id="Zs1-lH-44k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Activities" image="heart" catalog="system" selectedImage="heart.fill" id="1W5-as-HhO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Cw1-uc-Fkr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dnE-bm-6IB" kind="relationship" relationship="rootViewController" id="VZN-Qt-iTq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KI2-NX-3T4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1038" y="767"/>
+        </scene>
+        <!--Activities-->
+        <scene sceneID="66C-RU-8Ga">
+            <objects>
+                <viewController id="dnE-bm-6IB" customClass="ActivitiesViewController" customModule="fitness_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W09-e4-hyw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvw-7i-KNo">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.94849354029999999" green="0.9487218261" blue="0.96566361190000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94849354028701782" green="0.94872182607650757" blue="0.9656636118888855" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="right" secondItem="nGg-uT-2Q7" secondAttribute="right" id="GmO-o1-RuD"/>
+                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="left" secondItem="nGg-uT-2Q7" secondAttribute="left" id="eno-9A-mAB"/>
+                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="bottom" secondItem="W09-e4-hyw" secondAttribute="bottom" id="h44-bg-wax"/>
+                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="top" secondItem="W09-e4-hyw" secondAttribute="top" id="oKo-Nt-rEl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nGg-uT-2Q7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Activities" largeTitleDisplayMode="always" id="OBd-dw-dp1"/>
+                    <connections>
+                        <outlet property="scrollView" destination="Bvw-7i-KNo" id="hTo-ua-auM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jHf-En-7Rd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1688.4057971014495" y="1505.3571428571429"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="v5f-7n-YNo">
+            <objects>
+                <tabBarController id="bBR-Gt-cA2" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C7q-KX-xk1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Zs1-lH-44k" kind="relationship" relationship="viewControllers" id="lLq-IK-rGd"/>
+                        <segue destination="Qzp-eh-Pdg" kind="relationship" relationship="viewControllers" id="xGW-JI-7r5"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pEB-uM-5uF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-220" y="-27"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="heart" catalog="system" width="64" height="54"/>
+        <image name="heart.fill" catalog="system" width="64" height="54"/>
+        <image name="hexagon" catalog="system" width="64" height="62"/>
+        <image name="hexagon.fill" catalog="system" width="64" height="62"/>
+    </resources>
 </document>

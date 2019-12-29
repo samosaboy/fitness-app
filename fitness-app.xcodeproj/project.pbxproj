@@ -13,6 +13,9 @@
 		F97971C023B6F7A500F80737 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97971BE23B6F7A500F80737 /* Main.storyboard */; };
 		F97971C223B6F7A600F80737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97971C123B6F7A600F80737 /* Assets.xcassets */; };
 		F97971C523B6F7A600F80737 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F97971C323B6F7A600F80737 /* LaunchScreen.storyboard */; };
+		F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */; };
+		F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */; };
+		F97F17C523B7C4E600505DF2 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		F97971C123B6F7A600F80737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F97971C423B6F7A600F80737 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F97971C623B6F7A600F80737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
+		F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentActivityViewController.swift; sourceTree = "<group>"; };
+		F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		F97971B723B6F7A500F80737 /* fitness-app */ = {
 			isa = PBXGroup;
 			children = (
+				F97971CC23B6FDDB00F80737 /* Activities */,
 				F97971B823B6F7A500F80737 /* AppDelegate.swift */,
 				F97971BA23B6F7A500F80737 /* SceneDelegate.swift */,
 				F97971BC23B6F7A500F80737 /* ViewController.swift */,
@@ -63,8 +70,18 @@
 				F97971C123B6F7A600F80737 /* Assets.xcassets */,
 				F97971C323B6F7A600F80737 /* LaunchScreen.storyboard */,
 				F97971C623B6F7A600F80737 /* Info.plist */,
+				F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */,
 			);
 			path = "fitness-app";
+			sourceTree = "<group>";
+		};
+		F97971CC23B6FDDB00F80737 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */,
+				F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */,
+			);
+			path = Activities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97971BD23B6F7A500F80737 /* ViewController.swift in Sources */,
+				F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */,
+				F97F17C523B7C4E600505DF2 /* UIViewControllerExt.swift in Sources */,
 				F97971B923B6F7A500F80737 /* AppDelegate.swift in Sources */,
+				F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */,
 				F97971BB23B6F7A500F80737 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
