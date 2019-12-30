@@ -8,45 +8,82 @@
 
 import UIKit
 
-class ActivitiesViewController: UIViewController {
+class ActivitiesViewController: UIViewController, UIScrollViewDelegate {
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    let currentActivityVC = CurrentActivityViewController()
+    let todaysActivityVC = TodaysActivitiesViewController()
     
-    lazy var mainContentView: UIView = {
-        let view = UIView()
-        view.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    let scrollView = UIScrollView()
+    //    let contentView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.addSubview(mainContentView)
+        scrollView.backgroundColor = UIColor(named: "defaultBackground")
+        setupScrollView()
+        createAddButton()
+        setupViews()
+    }
+    
+    func setupScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.delegate = self
+        view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            mainContentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            mainContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            mainContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
+        ])
+    }
+    
+    func setupViews(){
+        createCurrentWorkout()
+    }
+    
+    fileprivate func createCurrentWorkout() {
+        addChild(currentActivityVC)
+        currentActivityVC.view.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(currentActivityVC.view)
+        
+        let currentActivityVCView: UIView = currentActivityVC.view
+        
+        NSLayoutConstraint.activate([
+            currentActivityVCView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            currentActivityVCView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            currentActivityVCView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            currentActivityVCView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            currentActivityVCView.heightAnchor.constraint(equalToConstant: 250),
         ])
         
-        createCurrentWorkout()
-        createAddButton()
+        addChild(todaysActivityVC)
+        todaysActivityVC.view.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(todaysActivityVC.view)
+        
+        let todayActivityVCView: UIView = todaysActivityVC.view
+        
+        NSLayoutConstraint.activate([
+            todayActivityVCView.heightAnchor.constraint(equalToConstant: 600),
+            todayActivityVCView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            todayActivityVCView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            todayActivityVCView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            todayActivityVCView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            todayActivityVCView.topAnchor.constraint(equalTo: currentActivityVCView.bottomAnchor, constant: 20),
+        ])
     }
     
-    func createCurrentWorkout() {
-        self.embed(CurrentActivityViewController(), inView: self.mainContentView)
-    }
-    
-    func createAddButton() {
+    fileprivate lazy var rightButton: UIButton = {
         let rightButton = UIButton()
         rightButton.setImage(UIImage(systemName: "person.crop.circle", withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle)), for: .normal)
-        navigationController?.navigationBar.addSubview(rightButton)
         
         rightButton.tag = 1
         rightButton.frame = CGRect(x: self.view.frame.width, y: 0, width: 50, height: 20)
-        
+        return rightButton
+    }()
+    
+    fileprivate func createAddButton() {
+        navigationController?.navigationBar.addSubview(rightButton)
         let targetView = self.navigationController?.navigationBar
-        
         let trailingContraint = NSLayoutConstraint(item: rightButton, attribute:
             .trailingMargin, relatedBy: .equal, toItem: targetView,
                              attribute: .trailingMargin, multiplier: 1.0, constant: -16)
@@ -58,15 +95,17 @@ class ActivitiesViewController: UIViewController {
         NSLayoutConstraint.activate([trailingContraint, bottomConstraint])
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        func animate(_ alpha: Int){
+            UIView.animate(withDuration: 0.25, delay: 0, options: .transitionCrossDissolve, animations: {
+                self.rightButton.alpha = CGFloat(alpha)
+            })
+        }
+        
+        if let height = navigationController?.navigationBar.frame.size.height, height == 44 {
+            animate(0)
+        } else {
+            animate(1)
+        }
+    }
 }

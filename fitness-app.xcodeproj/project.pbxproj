@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F928305223B951A7000A6248 /* DataTypeTileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928305123B951A7000A6248 /* DataTypeTileHeaderView.swift */; };
+		F928305423B9538A000A6248 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928305323B9538A000A6248 /* Reusable.swift */; };
 		F97971B923B6F7A500F80737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971B823B6F7A500F80737 /* AppDelegate.swift */; };
 		F97971BB23B6F7A500F80737 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971BA23B6F7A500F80737 /* SceneDelegate.swift */; };
 		F97971BD23B6F7A500F80737 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971BC23B6F7A500F80737 /* ViewController.swift */; };
@@ -16,9 +18,13 @@
 		F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */; };
 		F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */; };
 		F97F17C523B7C4E600505DF2 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */; };
+		F9EB749823B9A33600DEA99B /* TodaysActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */; };
+		F9EB749A23B9A5A800DEA99B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB749923B9A5A800DEA99B /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F928305123B951A7000A6248 /* DataTypeTileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypeTileHeaderView.swift; sourceTree = "<group>"; };
+		F928305323B9538A000A6248 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		F97971B523B6F7A500F80737 /* fitness-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fitness-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97971B823B6F7A500F80737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F97971BA23B6F7A500F80737 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +36,8 @@
 		F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentActivityViewController.swift; sourceTree = "<group>"; };
 		F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysActivitiesViewController.swift; sourceTree = "<group>"; };
+		F9EB749923B9A5A800DEA99B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F928305023B937CB000A6248 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F928305123B951A7000A6248 /* DataTypeTileHeaderView.swift */,
+				F928305323B9538A000A6248 /* Reusable.swift */,
+				F9EB749923B9A5A800DEA99B /* GradientView.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		F97971AC23B6F7A500F80737 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +80,7 @@
 		F97971B723B6F7A500F80737 /* fitness-app */ = {
 			isa = PBXGroup;
 			children = (
+				F928305023B937CB000A6248 /* Utility */,
 				F97971CC23B6FDDB00F80737 /* Activities */,
 				F97971B823B6F7A500F80737 /* AppDelegate.swift */,
 				F97971BA23B6F7A500F80737 /* SceneDelegate.swift */,
@@ -80,6 +99,7 @@
 			children = (
 				F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */,
 				F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */,
+				F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */,
 			);
 			path = Activities;
 			sourceTree = "<group>";
@@ -156,8 +176,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97971BD23B6F7A500F80737 /* ViewController.swift in Sources */,
+				F928305223B951A7000A6248 /* DataTypeTileHeaderView.swift in Sources */,
+				F9EB749A23B9A5A800DEA99B /* GradientView.swift in Sources */,
 				F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */,
+				F9EB749823B9A33600DEA99B /* TodaysActivitiesViewController.swift in Sources */,
 				F97F17C523B7C4E600505DF2 /* UIViewControllerExt.swift in Sources */,
+				F928305423B9538A000A6248 /* Reusable.swift in Sources */,
 				F97971B923B6F7A500F80737 /* AppDelegate.swift in Sources */,
 				F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */,
 				F97971BB23B6F7A500F80737 /* SceneDelegate.swift in Sources */,

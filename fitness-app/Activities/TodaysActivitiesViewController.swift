@@ -1,16 +1,41 @@
 //
-//  CurrentActivityViewController.swift
+//  TodaysActivitiesViewController.swift
 //  fitness-app
 //
-//  Created by Hackintoshi9 on 2019-12-28.
+//  Created by Hackintoshi9 on 2019-12-29.
 //  Copyright © 2019 sam0sab0y. All rights reserved.
 //
 
 import UIKit
 
-class CurrentActivityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var tableView: UITableView?
     var headerCell: UITableViewCell?
+    
+    func createActivity(name: String, gradient1: UIColor, gradient2: UIColor) -> GradientView {
+        let workout = GradientView(frame: CGRect(x: 0, y: 0, width: 30, height: 100))
+        workout.translatesAutoresizingMaskIntoConstraints = false
+        workout.topColor = gradient1
+        workout.bottomColor = gradient2
+        workout.cornerRadius = 8
+        
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .medium)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = name
+        
+        workout.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: workout.leadingAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: workout.topAnchor),
+            label.bottomAnchor.constraint(equalTo: workout.bottomAnchor),
+            label.trailingAnchor.constraint(equalTo: workout.trailingAnchor, constant: -8),
+        ])
+        
+        return workout
+    }
     
     func createCurrentActivity() -> UIView {
         let view = UIStackView()
@@ -18,58 +43,53 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
         view.distribution = .fill
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        let currentActivityLabel = UILabel()
-        currentActivityLabel.text = "Back Extension"
-        currentActivityLabel.tintColor = .systemRed
+        let label = UILabel()
+        label.text = "Chest Day"
+        label.tintColor = .systemRed
         
-        let currentActivityView = DataTypeTileHeaderView(image: UIImage(systemName: "waveform.path.ecg")!, label: currentActivityLabel, detailedTextLabel: "2 mins left")
+        let tileHeader = DataTypeTileHeaderView(image: UIImage(systemName: "calendar.circle.fill")!, label: label, detailedTextLabel: "1 hour estimated")
         
-        let timeEstimatesView = UIView()
-        timeEstimatesView.translatesAutoresizingMaskIntoConstraints = false
+        let tileFooter = UIView()
+        tileFooter.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addArrangedSubview(currentActivityView.view)
-        view.addArrangedSubview(timeEstimatesView)
+        view.addArrangedSubview(tileHeader.view)
+        view.addArrangedSubview(tileFooter)
         
         
         NSLayoutConstraint.activate([
-            currentActivityView.view.heightAnchor.constraint(equalToConstant: 50),
-            currentActivityView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            currentActivityView.view.topAnchor.constraint(equalTo: view.topAnchor),
-            currentActivityView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            timeEstimatesView.topAnchor.constraint(equalTo: currentActivityView.view.bottomAnchor)
+            tileHeader.view.heightAnchor.constraint(equalToConstant: 50),
+            tileHeader.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tileHeader.view.topAnchor.constraint(equalTo: view.topAnchor),
+            tileHeader.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tileFooter.topAnchor.constraint(equalTo: tileHeader.view.bottomAnchor)
         ])
         
-        let statView = UIStackView()
-        statView.sizeToFit()
+        let workout1 = createActivity(name: "Barbell Bench Press", gradient1: UIColor(named: "appOrange")!, gradient2: UIColor(named: "appYellow")!)
+        let workout2 = createActivity(name: "Flat Bench Dumbbell Press", gradient1: UIColor(named: "appPurple")!, gradient2: UIColor(named: "appPurpleBlue")!)
+        let workout3 = createActivity(name: "Dips", gradient1: UIColor(named: "appGreen")!, gradient2: UIColor(named: "appGreenLight")!)
+        let workout4 = createActivity(name: "Cable Fly", gradient1: UIColor(named: "appBlue")!, gradient2: UIColor(named: "appBlueLight")!)
+        let workout5 = createActivity(name: "Back Extension", gradient1: UIColor(named: "appPurple")!, gradient2: UIColor(named: "appPurpleBlue")!)
+
+        let statView = UIStackView(arrangedSubviews: [workout1, workout2, workout3, workout4, workout5])
+        statView.spacing = 15
+        statView.axis = .vertical
         statView.translatesAutoresizingMaskIntoConstraints = false
         statView.distribution = .fillEqually
         
-        let currentWeight = createStat(statCount: "75.0", statLabel: "lbs")
-        let currentReps = createStat(statCount: "5", statLabel: "reps")
-        let currentSets = createStat(statCount: "3", statLabel: "sets")
-        timeEstimatesView.addSubview(statView)
-        
-        statView.addArrangedSubview(currentReps)
-        statView.addArrangedSubview(currentSets)
-        statView.addArrangedSubview(currentWeight)
+        tileFooter.addSubview(statView)
         
         NSLayoutConstraint.activate([
-            statView.centerYAnchor.constraint(equalTo: timeEstimatesView.centerYAnchor),
-            statView.heightAnchor.constraint(equalToConstant: 35),
-            statView.leadingAnchor.constraint(equalTo: timeEstimatesView.leadingAnchor, constant: 20),
-            statView.trailingAnchor.constraint(equalTo: timeEstimatesView.trailingAnchor, constant: -20),
+            statView.leadingAnchor.constraint(equalTo: tileFooter.leadingAnchor, constant: 20),
+            statView.trailingAnchor.constraint(equalTo: tileFooter.trailingAnchor, constant: -20),
+            statView.topAnchor.constraint(equalTo: tileFooter.topAnchor),
+            statView.bottomAnchor.constraint(equalTo: tileFooter.bottomAnchor, constant: -20),
         ])
         
         return view
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        default:
-            return 2
-        }
+        return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,10 +118,6 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
             label.leadingAnchor.constraint(equalTo: count.trailingAnchor, constant: 3),
             label.lastBaselineAnchor.constraint(equalTo: count.lastBaselineAnchor),
         ])
-        
-        
-        
-        
         
         return view
     }
@@ -132,15 +148,9 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
                 currentActivity.topAnchor.constraint(equalTo: cell!.contentView.topAnchor),
             ])
         default:
-            switch indexPath.row {
-            case 0:
-                cell?.textLabel?.text = "Add 30 seconds"
-                cell?.textLabel?.textColor = .systemBlue
-            default:
-                cell?.accessoryType = .disclosureIndicator
-                cell?.textLabel?.text = "Skip activity"
-                cell?.textLabel?.textColor = .systemRed
-            }
+            cell?.textLabel?.text = "Edit todays activities"
+            cell?.textLabel?.textColor = .systemRed
+            cell?.accessoryType = .disclosureIndicator
         }
         
         return cell!
@@ -159,14 +169,9 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
         label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Current Activity"
-        
-        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        rightButton.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline)), for: .normal)
-        rightButton.tag = 2
+        label.text = "Todays Activities"
         
         sectionView.addArrangedSubview(label)
-        sectionView.addArrangedSubview(rightButton)
         
         return sectionView
     }
@@ -184,7 +189,7 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 100
+            return 450
         default:
             return UITableView.automaticDimension
         }

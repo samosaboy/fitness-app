@@ -3,26 +3,10 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Calories-->
-        <scene sceneID="zWI-mi-Jad">
-            <objects>
-                <viewController id="Qzp-eh-Pdg" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QUi-0g-yRd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="lUl-Dm-I3B"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Calories" image="hexagon" catalog="system" selectedImage="hexagon.fill" id="YOr-cG-S3I"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bmM-ml-oIj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="332" y="757"/>
-        </scene>
         <!--Activities-->
         <scene sceneID="gq7-cq-kpA">
             <objects>
@@ -42,32 +26,58 @@
             </objects>
             <point key="canvasLocation" x="-1038" y="767"/>
         </scene>
+        <!--Calories-->
+        <scene sceneID="mhm-IT-t6A">
+            <objects>
+                <tableViewController id="Ggl-w3-Let" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kWE-Mf-heH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexBackgroundColor" name="defaultBackground"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="k77-eL-Bqi">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k77-eL-Bqi" id="KwJ-dn-48V">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ggl-w3-Let" id="Wge-iX-4xt"/>
+                            <outlet property="delegate" destination="Ggl-w3-Let" id="mxy-TF-cYI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Calories" id="mcu-lZ-WwL"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cs5-cK-dQj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939" y="1044"/>
+        </scene>
+        <!--Calories-->
+        <scene sceneID="H0T-yJ-UHW">
+            <objects>
+                <navigationController title="Calories" id="EWD-df-z3P" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calories" image="book" catalog="system" selectedImage="book.fill" id="YHn-Te-a5q"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="FBi-OP-9Nx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ggl-w3-Let" kind="relationship" relationship="rootViewController" id="2Ki-qN-v1g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5io-E2-Uv5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="146" y="775"/>
+        </scene>
         <!--Activities-->
         <scene sceneID="66C-RU-8Ga">
             <objects>
                 <viewController id="dnE-bm-6IB" customClass="ActivitiesViewController" customModule="fitness_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="W09-e4-hyw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvw-7i-KNo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" red="0.94849354029999999" green="0.9487218261" blue="0.96566361190000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.94849354028701782" green="0.94872182607650757" blue="0.9656636118888855" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="right" secondItem="nGg-uT-2Q7" secondAttribute="right" id="GmO-o1-RuD"/>
-                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="left" secondItem="nGg-uT-2Q7" secondAttribute="left" id="eno-9A-mAB"/>
-                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="bottom" secondItem="W09-e4-hyw" secondAttribute="bottom" id="h44-bg-wax"/>
-                            <constraint firstItem="Bvw-7i-KNo" firstAttribute="top" secondItem="W09-e4-hyw" secondAttribute="top" id="oKo-Nt-rEl"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="nGg-uT-2Q7"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Activities" largeTitleDisplayMode="always" id="OBd-dw-dp1"/>
-                    <connections>
-                        <outlet property="scrollView" destination="Bvw-7i-KNo" id="hTo-ua-auM"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Activities" id="OBd-dw-dp1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHf-En-7Rd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,7 +95,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Zs1-lH-44k" kind="relationship" relationship="viewControllers" id="lLq-IK-rGd"/>
-                        <segue destination="Qzp-eh-Pdg" kind="relationship" relationship="viewControllers" id="xGW-JI-7r5"/>
+                        <segue destination="EWD-df-z3P" kind="relationship" relationship="viewControllers" id="eSo-9q-sbK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEB-uM-5uF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -94,9 +104,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
+        <image name="book.fill" catalog="system" width="64" height="50"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="heart.fill" catalog="system" width="64" height="54"/>
-        <image name="hexagon" catalog="system" width="64" height="62"/>
-        <image name="hexagon.fill" catalog="system" width="64" height="62"/>
+        <namedColor name="defaultBackground">
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
