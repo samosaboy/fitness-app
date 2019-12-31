@@ -151,6 +151,12 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.section)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionView = UIStackView()
         sectionView.axis = .horizontal
@@ -161,12 +167,11 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Current Activity"
         
-        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        rightButton.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline)), for: .normal)
-        rightButton.tag = 2
+        //        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        //        rightButton.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline)), for: .normal)
+        //        rightButton.tag = 2
         
         sectionView.addArrangedSubview(label)
-        sectionView.addArrangedSubview(rightButton)
         
         return sectionView
     }
@@ -192,8 +197,8 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.translatesAutoresizingMaskIntoConstraints = false
-        tableView = UITableView(frame: .zero, style: .insetGrouped)
+        
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), style: .insetGrouped)
         tableView?.translatesAutoresizingMaskIntoConstraints = false
         tableView?.backgroundColor = .none
         tableView?.delegate = self
@@ -210,5 +215,4 @@ class CurrentActivityViewController: UIViewController, UITableViewDataSource, UI
             tableView!.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
     }
-    
 }

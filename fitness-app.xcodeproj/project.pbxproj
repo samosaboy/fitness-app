@@ -18,6 +18,7 @@
 		F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */; };
 		F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */; };
 		F97F17C523B7C4E600505DF2 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */; };
+		F9CF24E923BAD6A60010AC65 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CF24E823BAD6A60010AC65 /* Colors.swift */; };
 		F9EB749823B9A33600DEA99B /* TodaysActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */; };
 		F9EB749A23B9A5A800DEA99B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB749923B9A5A800DEA99B /* GradientView.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentActivityViewController.swift; sourceTree = "<group>"; };
 		F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		F9CF24E823BAD6A60010AC65 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysActivitiesViewController.swift; sourceTree = "<group>"; };
 		F9EB749923B9A5A800DEA99B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +59,7 @@
 				F928305123B951A7000A6248 /* DataTypeTileHeaderView.swift */,
 				F928305323B9538A000A6248 /* Reusable.swift */,
 				F9EB749923B9A5A800DEA99B /* GradientView.swift */,
+				F9CF24E823BAD6A60010AC65 /* Colors.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97971BD23B6F7A500F80737 /* ViewController.swift in Sources */,
+				F9CF24E923BAD6A60010AC65 /* Colors.swift in Sources */,
 				F928305223B951A7000A6248 /* DataTypeTileHeaderView.swift in Sources */,
 				F9EB749A23B9A5A800DEA99B /* GradientView.swift in Sources */,
 				F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */,

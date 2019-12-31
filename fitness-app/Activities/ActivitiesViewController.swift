@@ -44,9 +44,8 @@ class ActivitiesViewController: UIViewController, UIScrollViewDelegate {
     fileprivate func createCurrentWorkout() {
         addChild(currentActivityVC)
         currentActivityVC.view.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(currentActivityVC.view)
-        
         let currentActivityVCView: UIView = currentActivityVC.view
+        scrollView.addSubview(currentActivityVCView)
         
         NSLayoutConstraint.activate([
             currentActivityVCView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
@@ -58,12 +57,13 @@ class ActivitiesViewController: UIViewController, UIScrollViewDelegate {
         
         addChild(todaysActivityVC)
         todaysActivityVC.view.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(todaysActivityVC.view)
-        
+
         let todayActivityVCView: UIView = todaysActivityVC.view
+        todayActivityVCView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(todayActivityVCView)
         
         NSLayoutConstraint.activate([
-            todayActivityVCView.heightAnchor.constraint(equalToConstant: 600),
+            todayActivityVCView.heightAnchor.constraint(equalToConstant: 800),
             todayActivityVCView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             todayActivityVCView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             todayActivityVCView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -75,7 +75,7 @@ class ActivitiesViewController: UIViewController, UIScrollViewDelegate {
     fileprivate lazy var rightButton: UIButton = {
         let rightButton = UIButton()
         rightButton.setImage(UIImage(systemName: "person.crop.circle", withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle)), for: .normal)
-        
+//        rightButton.tintColor = .orange
         rightButton.tag = 1
         rightButton.frame = CGRect(x: self.view.frame.width, y: 0, width: 50, height: 20)
         return rightButton

@@ -18,9 +18,9 @@ class DataTypeTileHeaderView {
         cell = UITableViewCell(style: .value1, reuseIdentifier: DataTypeTileHeaderView.reuseIdentifier)
         cell.translatesAutoresizingMaskIntoConstraints = false
         cell.imageView?.image = image
-        cell.imageView?.tintColor = .systemRed
+        cell.imageView?.tintColor = .red
         cell.textLabel?.text = label.text
-        cell.textLabel?.textColor = label.tintColor
+        cell.textLabel?.textColor = .red
         cell.textLabel?.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .subheadline).pointSize, weight: .medium)
         
         if detailedTextLabel != nil {
@@ -37,7 +37,7 @@ class DataTypeTileHeaderView {
             cell.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-
+    
 }
 
 extension DataTypeTileHeaderView: Reusable {}
