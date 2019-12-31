@@ -8,35 +8,11 @@
 
 import UIKit
 
-struct Excersize {
-    var title: String
-    var reps: Int
-    var sets: Int
-    var duration: Int
-    
-    // for color picker
-    var color: ActivityColorsEnum
-    
-    var grad1: UIColor?
-    var grad2: UIColor?
-    
-    init(title: String, reps: Int, sets: Int, duration: Int, color: ActivityColorsEnum) {
-        self.title = title
-        self.reps = reps
-        self.sets = sets
-        self.duration = duration
-        self.color = color
-        
-        let colorGradients = UIColor.ActivityColors(color: color)
-        
-        self.grad1 = colorGradients.color[0]
-        self.grad2 = colorGradients.color[1]
-    }
-}
-
 class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var tableView: UITableView?
     var headerCell: UITableViewCell?
+    
+    let todaysActivitiesTableViewController = TodaysActivitiesTableViewController()
     
     var activities = [Excersize]([
         Excersize(title: "Barbell Bench Press", reps: 5, sets: 3, duration: 12, color: .blue),
@@ -136,7 +112,7 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
             tileFooter.topAnchor.constraint(equalTo: tileHeader.view.bottomAnchor)
         ])
         
-        var subViews: [UIView] = []
+//        var subViews: [UIView] = []
         
         if activities.count == 0 {
             let emptyContent = UILabel()
@@ -153,12 +129,17 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
                 emptyContent.bottomAnchor.constraint(lessThanOrEqualTo: tileFooter.bottomAnchor, constant: -20),
             ])
         } else {
-            for activity in activities {
-                let activityView = createActivity(activity: activity)
-                subViews.append(activityView)
-            }
+//            for activity in activities {
+//                let activityView = createActivity(activity: activity)
+//                subViews.append(activityView)
+//            }
+//
             
-            let statView = UIStackView(arrangedSubviews: subViews)
+            let _view: UIView = todaysActivitiesTableViewController.view
+            _view.heightAnchor.constraint(equalToConstant: 75 * 5 + (5 * 5)).isActive = true
+            _view.translatesAutoresizingMaskIntoConstraints = false
+            
+            let statView = UIStackView(arrangedSubviews: [_view])
             statView.spacing = 10
             statView.axis = .vertical
             statView.translatesAutoresizingMaskIntoConstraints = false
@@ -238,7 +219,7 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
             let todaysActivities = createTodaysActivities()
             cell?.contentView.addSubview(todaysActivities)
             cell?.contentView.layoutMargins.right = 20
-            
+
             NSLayoutConstraint.activate([
                 todaysActivities.leadingAnchor.constraint(equalTo: cell!.contentView.leadingAnchor),
                 todaysActivities.trailingAnchor.constraint(equalTo: cell!.contentView.trailingAnchor),
@@ -295,7 +276,7 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //        switch indexPath.section {
         //        case 0:
-        //            return 450
+        //            return 100
         //        default:
         return UITableView.automaticDimension
         //        }
@@ -313,6 +294,8 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
         tableView?.isScrollEnabled = false
         
         self.view.addSubview(tableView!)
+        
+        addChild(todaysActivitiesTableViewController)
         
         NSLayoutConstraint.activate([
             tableView!.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
