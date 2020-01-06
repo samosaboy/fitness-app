@@ -14,71 +14,22 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
     
     let todaysActivitiesTableViewController = TodaysActivitiesTableViewController()
     
-    var activities = [Excersize]([
-        Excersize(title: "Barbell Bench Press", reps: 5, sets: 3, duration: 12, color: .blue),
-        Excersize(title: "Flat Bench Dumbbell Press", reps: 5, sets: 3, duration: 12, color: .purple),
-        Excersize(title: "Dips", reps: 5, sets: 3, duration: 12, color: .green),
-        Excersize(title: "Cable Fly", reps: 5, sets: 3, duration: 12, color: .yellow),
-        Excersize(title: "Back Extension", reps: 5, sets: 3, duration: 12, color: .common),
-    ])
+    lazy var rightButton: UILabel = {
+        let rightButton = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        rightButton.isUserInteractionEnabled = true
+        rightButton.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize, weight: .regular)
+        rightButton.textColor = .systemRed
+        rightButton.tag = 2
+        rightButton.text = "Edit"
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleRightButtonClick(_:)))
+        rightButton.addGestureRecognizer(tap)
+        return rightButton
+    }()
     
-    func createActivity(activity: Excersize) -> GradientView {
-        let workout = GradientView()
-        workout.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        workout.topColor = activity.grad1!
-        workout.bottomColor = activity.grad2!
-        workout.cornerRadius = 12
-        
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = activity.title
-        
-        let description = UIStackView(arrangedSubviews: [])
-        description.translatesAutoresizingMaskIntoConstraints = false
-        description.distribution = .fillEqually
-        description.spacing = 8
-        
-        let sets = UILabel()
-        sets.textColor = .white
-        sets.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .caption1).pointSize, weight: .regular)
-        sets.translatesAutoresizingMaskIntoConstraints = false
-        sets.text = "\(String(activity.sets)) sets"
-        
-        let reps = UILabel()
-        reps.textColor = .white
-        reps.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .caption1).pointSize, weight: .regular)
-        reps.translatesAutoresizingMaskIntoConstraints = false
-        reps.text = "\(String(activity.reps)) reps"
-        
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        
-        description.addArrangedSubview(reps)
-        description.addArrangedSubview(sets)
-        
-        container.addSubview(label)
-        container.addSubview(description)
-        
-        workout.addSubview(container)
-        
-        NSLayoutConstraint.activate([
-            container.centerYAnchor.constraint(equalTo: workout.centerYAnchor),
-            container.leadingAnchor.constraint(equalTo: workout.leadingAnchor, constant: 8),
-            container.trailingAnchor.constraint(equalTo: workout.trailingAnchor, constant: -8),
-            
-            label.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            label.topAnchor.constraint(equalTo: container.topAnchor),
-            label.bottomAnchor.constraint(equalTo: description.topAnchor),
-            
-            description.topAnchor.constraint(equalTo: label.bottomAnchor),
-            description.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            description.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-        ])
-        
-        return workout
+    @objc fileprivate func handleRightButtonClick(_ sender: UITapGestureRecognizer) {
+        todaysActivitiesTableViewController.toggleEditMode(sender)
+        updateEditButton()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -112,50 +63,33 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
             tileFooter.topAnchor.constraint(equalTo: tileHeader.view.bottomAnchor)
         ])
         
-//        var subViews: [UIView] = []
+        let _view: UIView = todaysActivitiesTableViewController.view
+        var count = todaysActivitiesTableViewController.activities.count
         
-        if activities.count == 0 {
-            let emptyContent = UILabel()
-            emptyContent.translatesAutoresizingMaskIntoConstraints = false
-            emptyContent.text = "You have no activities"
-            emptyContent.textColor = .lightGray
-            emptyContent.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .subheadline).pointSize, weight: .regular)
-            tileFooter.addSubview(emptyContent)
-            
-            NSLayoutConstraint.activate([
-                emptyContent.leadingAnchor.constraint(equalTo: tileFooter.leadingAnchor, constant: 20),
-                emptyContent.trailingAnchor.constraint(equalTo: tileFooter.trailingAnchor, constant: -20),
-                emptyContent.topAnchor.constraint(equalTo: tileFooter.topAnchor),
-                emptyContent.bottomAnchor.constraint(lessThanOrEqualTo: tileFooter.bottomAnchor, constant: -20),
-            ])
-        } else {
-//            for activity in activities {
-//                let activityView = createActivity(activity: activity)
-//                subViews.append(activityView)
-//            }
-//
-            
-            let _view: UIView = todaysActivitiesTableViewController.view
-            _view.heightAnchor.constraint(equalToConstant: 75 * 5 + (5 * 5)).isActive = true
-            _view.translatesAutoresizingMaskIntoConstraints = false
-            
-            let statView = UIStackView(arrangedSubviews: [_view])
-            statView.spacing = 10
-            statView.axis = .vertical
-            statView.translatesAutoresizingMaskIntoConstraints = false
-            statView.alignment = .fill
-            statView.distribution = .fill
-            
-            tileFooter.addSubview(statView)
-            
-            NSLayoutConstraint.activate([
-                statView.leadingAnchor.constraint(equalTo: tileFooter.leadingAnchor, constant: 20),
-                statView.trailingAnchor.constraint(equalTo: tileFooter.trailingAnchor, constant: -20),
-                statView.topAnchor.constraint(equalTo: tileFooter.topAnchor),
-                statView.bottomAnchor.constraint(lessThanOrEqualTo: tileFooter.bottomAnchor, constant: -20),
-            ])
+        print("How many activities?", count)
+        
+        if (count == 0) {
+            count = 1
         }
         
+        _view.heightAnchor.constraint(equalToConstant: CGFloat(75 * count + (5 * count))).isActive = true
+        _view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let statView = UIStackView(arrangedSubviews: [_view])
+        statView.spacing = 10
+        statView.axis = .vertical
+        statView.translatesAutoresizingMaskIntoConstraints = false
+        statView.alignment = .fill
+        statView.distribution = .fill
+        
+        tileFooter.addSubview(statView)
+        
+        NSLayoutConstraint.activate([
+            statView.leadingAnchor.constraint(equalTo: tileFooter.leadingAnchor, constant: 20),
+            statView.trailingAnchor.constraint(equalTo: tileFooter.trailingAnchor, constant: -20),
+            statView.topAnchor.constraint(equalTo: tileFooter.topAnchor),
+            statView.bottomAnchor.constraint(lessThanOrEqualTo: tileFooter.bottomAnchor, constant: -20),
+        ])
         
         NSLayoutConstraint.activate([
             tileFooter.topAnchor.constraint(equalTo: tileHeader.view.bottomAnchor),
@@ -175,35 +109,9 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
         return 2
     }
     
-    func createStat(statCount: String, statLabel: String) -> UIView {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        let count = UILabel()
-        count.translatesAutoresizingMaskIntoConstraints = false
-        count.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title1).pointSize, weight: .semibold)
-        count.text = statCount
-        
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .medium)
-        label.textColor = .systemGray
-        label.text = statLabel
-        
-        view.addSubview(count)
-        view.addSubview(label)
-        
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: count.trailingAnchor, constant: 3),
-            label.lastBaselineAnchor.constraint(equalTo: count.lastBaselineAnchor),
-        ])
-        
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layoutIfNeeded()
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        cell.layoutIfNeeded()
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
@@ -218,8 +126,7 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
         case 0:
             let todaysActivities = createTodaysActivities()
             cell?.contentView.addSubview(todaysActivities)
-            cell?.contentView.layoutMargins.right = 20
-
+            
             NSLayoutConstraint.activate([
                 todaysActivities.leadingAnchor.constraint(equalTo: cell!.contentView.leadingAnchor),
                 todaysActivities.trailingAnchor.constraint(equalTo: cell!.contentView.trailingAnchor),
@@ -250,12 +157,9 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Todays Activities"
         
-        let rightButton = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        rightButton.text = "Edit"
-        rightButton.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize, weight: .regular)
-        rightButton.textColor = .systemRed
-        //        rightButton.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline)), for: .normal)
-        //        rightButton.tag = 2
+        
+        //rightButton.setImage(UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(textStyle: .headline)), for: .normal)
+        //rightButton.tag = 2
         
         sectionView.addArrangedSubview(label)
         sectionView.addArrangedSubview(rightButton)
@@ -274,12 +178,17 @@ class TodaysActivitiesViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //        switch indexPath.section {
-        //        case 0:
-        //            return 100
-        //        default:
         return UITableView.automaticDimension
-        //        }
+    }
+    
+    fileprivate func updateEditButton() {
+        DispatchQueue.main.async {
+            if (self.todaysActivitiesTableViewController.tableView.isEditing) {
+                self.rightButton.text = "Done"
+            } else {
+                self.rightButton.text = "Edit"
+            }
+        }
     }
     
     override func viewDidLoad() {

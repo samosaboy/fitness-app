@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -84,6 +85,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHf-En-7Rd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1688.4057971014495" y="1505.3571428571429"/>
+        </scene>
+        <!--New Activity View Controller-->
+        <scene sceneID="wRc-90-bwk">
+            <objects>
+                <viewController storyboardIdentifier="NewActivityStoryboard" id="muO-yO-cj5" customClass="NewActivityViewController" customModule="fitness_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CV4-0h-CSC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new activity either by manually entering the form or selecting one from below." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRN-7Z-nm0">
+                                <rect key="frame" x="20" y="64" width="374" height="42.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REh-1H-p75">
+                                <rect key="frame" x="20" y="146.5" width="374" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="KaK-Lf-hXZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Add Activity">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="defaultBackground"/>
+                        <constraints>
+                            <constraint firstItem="REh-1H-p75" firstAttribute="top" secondItem="xRN-7Z-nm0" secondAttribute="bottom" constant="40" id="Fkm-Ru-6Uk"/>
+                            <constraint firstItem="xRN-7Z-nm0" firstAttribute="trailing" secondItem="2Yv-Di-Thz" secondAttribute="trailing" constant="-20" id="NTC-rC-DHT"/>
+                            <constraint firstItem="xRN-7Z-nm0" firstAttribute="leading" secondItem="2Yv-Di-Thz" secondAttribute="leading" constant="20" id="O8R-T1-ROs"/>
+                            <constraint firstItem="REh-1H-p75" firstAttribute="leading" secondItem="2Yv-Di-Thz" secondAttribute="leading" constant="20" id="qgV-kb-BAq"/>
+                            <constraint firstItem="xRN-7Z-nm0" firstAttribute="top" secondItem="2Yv-Di-Thz" secondAttribute="top" constant="20" id="tdk-I0-VOe"/>
+                            <constraint firstItem="2Yv-Di-Thz" firstAttribute="trailing" secondItem="REh-1H-p75" secondAttribute="trailing" constant="20" id="wPK-mk-OUj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2Yv-Di-Thz"/>
+                    </view>
+                    <connections>
+                        <outlet property="newActivityButton" destination="REh-1H-p75" id="0x7-C7-Dy9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c0p-3X-Tis" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-781" y="1530"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="v5f-7n-YNo">

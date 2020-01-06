@@ -3,12 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92D70B01BBBD21F28160161B /* Pods_fitness_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D481493223390F61ED48929A /* Pods_fitness_app.framework */; };
+		F90223D623C1153400A5F17E /* Activities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F90223D423C1153400A5F17E /* Activities.xcdatamodeld */; };
 		F928305223B951A7000A6248 /* DataTypeTileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928305123B951A7000A6248 /* DataTypeTileHeaderView.swift */; };
 		F928305423B9538A000A6248 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928305323B9538A000A6248 /* Reusable.swift */; };
+		F94B132623C2AAA7007D311C /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B132523C2AAA7007D311C /* DatabaseHelper.swift */; };
+		F94B132823C2B77B007D311C /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B132723C2B77B007D311C /* NewActivityViewController.swift */; };
+		F94B133323C2D442007D311C /* NewActivityFloatingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B133123C2D442007D311C /* NewActivityFloatingPanelViewController.swift */; };
+		F94B133423C2D442007D311C /* NewActivityFloatingPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94B133223C2D442007D311C /* NewActivityFloatingPanelViewController.xib */; };
+		F94B133623C2DD36007D311C /* FloatingPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B133523C2DD36007D311C /* FloatingPanelLayout.swift */; };
+		F94B133823C2EA88007D311C /* NewActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B133723C2EA88007D311C /* NewActivityCell.swift */; };
+		F94B133A23C2EBBC007D311C /* UICollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B133923C2EBBC007D311C /* UICollectionReusableView.swift */; };
 		F976BBFD23BB9EFD00850B84 /* TodaysActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F976BBFC23BB9EFD00850B84 /* TodaysActivitiesTableViewController.swift */; };
 		F97971B923B6F7A500F80737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971B823B6F7A500F80737 /* AppDelegate.swift */; };
 		F97971BB23B6F7A500F80737 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971BA23B6F7A500F80737 /* SceneDelegate.swift */; };
@@ -25,8 +34,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC8D41B005E07685FA9A73CC /* Pods-fitness-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitness-app.release.xcconfig"; path = "Target Support Files/Pods-fitness-app/Pods-fitness-app.release.xcconfig"; sourceTree = "<group>"; };
+		D481493223390F61ED48929A /* Pods_fitness_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fitness_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEF1CD59DC1F0747402D296F /* Pods-fitness-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitness-app.debug.xcconfig"; path = "Target Support Files/Pods-fitness-app/Pods-fitness-app.debug.xcconfig"; sourceTree = "<group>"; };
+		F90223D523C1153400A5F17E /* Activities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Activities.xcdatamodel; sourceTree = "<group>"; };
 		F928305123B951A7000A6248 /* DataTypeTileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypeTileHeaderView.swift; sourceTree = "<group>"; };
 		F928305323B9538A000A6248 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		F94B132523C2AAA7007D311C /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		F94B132723C2B77B007D311C /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
+		F94B133123C2D442007D311C /* NewActivityFloatingPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityFloatingPanelViewController.swift; sourceTree = "<group>"; };
+		F94B133223C2D442007D311C /* NewActivityFloatingPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewActivityFloatingPanelViewController.xib; sourceTree = "<group>"; };
+		F94B133523C2DD36007D311C /* FloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelLayout.swift; sourceTree = "<group>"; };
+		F94B133723C2EA88007D311C /* NewActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityCell.swift; sourceTree = "<group>"; };
+		F94B133923C2EBBC007D311C /* UICollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UICollectionReusableView.swift; path = "fitness-app/Utility/UICollectionReusableView.swift"; sourceTree = SOURCE_ROOT; };
 		F976BBFC23BB9EFD00850B84 /* TodaysActivitiesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysActivitiesTableViewController.swift; sourceTree = "<group>"; };
 		F97971B523B6F7A500F80737 /* fitness-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fitness-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97971B823B6F7A500F80737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,12 +69,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D70B01BBBD21F28160161B /* Pods_fitness_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA1A8A8F9E2E4CA94122B84F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D481493223390F61ED48929A /* Pods_fitness_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B51BFE86AA5898D158286A8C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DEF1CD59DC1F0747402D296F /* Pods-fitness-app.debug.xcconfig */,
+				CC8D41B005E07685FA9A73CC /* Pods-fitness-app.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F928305023B937CB000A6248 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -62,8 +100,22 @@
 				F928305323B9538A000A6248 /* Reusable.swift */,
 				F9EB749923B9A5A800DEA99B /* GradientView.swift */,
 				F9CF24E823BAD6A60010AC65 /* Colors.swift */,
+				F94B132523C2AAA7007D311C /* DatabaseHelper.swift */,
+				F94B133523C2DD36007D311C /* FloatingPanelLayout.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		F94B132A23C2B79D007D311C /* NewActivity */ = {
+			isa = PBXGroup;
+			children = (
+				F94B132723C2B77B007D311C /* NewActivityViewController.swift */,
+				F94B133123C2D442007D311C /* NewActivityFloatingPanelViewController.swift */,
+				F94B133223C2D442007D311C /* NewActivityFloatingPanelViewController.xib */,
+				F94B133723C2EA88007D311C /* NewActivityCell.swift */,
+				F94B133923C2EBBC007D311C /* UICollectionReusableView.swift */,
+			);
+			path = NewActivity;
 			sourceTree = "<group>";
 		};
 		F97971AC23B6F7A500F80737 = {
@@ -71,6 +123,8 @@
 			children = (
 				F97971B723B6F7A500F80737 /* fitness-app */,
 				F97971B623B6F7A500F80737 /* Products */,
+				B51BFE86AA5898D158286A8C /* Pods */,
+				AA1A8A8F9E2E4CA94122B84F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +149,7 @@
 				F97971C323B6F7A600F80737 /* LaunchScreen.storyboard */,
 				F97971C623B6F7A600F80737 /* Info.plist */,
 				F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */,
+				F94B132A23C2B79D007D311C /* NewActivity */,
 			);
 			path = "fitness-app";
 			sourceTree = "<group>";
@@ -106,6 +161,7 @@
 				F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */,
 				F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */,
 				F976BBFC23BB9EFD00850B84 /* TodaysActivitiesTableViewController.swift */,
+				F90223D423C1153400A5F17E /* Activities.xcdatamodeld */,
 			);
 			path = Activities;
 			sourceTree = "<group>";
@@ -117,9 +173,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F97971C923B6F7A600F80737 /* Build configuration list for PBXNativeTarget "fitness-app" */;
 			buildPhases = (
+				9C1966773053CC732914A871 /* [CP] Check Pods Manifest.lock */,
 				F97971B123B6F7A500F80737 /* Sources */,
 				F97971B223B6F7A500F80737 /* Frameworks */,
 				F97971B323B6F7A500F80737 /* Resources */,
+				9B2EF01160903964DD6F4797 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97971C523B6F7A600F80737 /* LaunchScreen.storyboard in Resources */,
+				F94B133423C2D442007D311C /* NewActivityFloatingPanelViewController.xib in Resources */,
 				F97971C223B6F7A600F80737 /* Assets.xcassets in Resources */,
 				F97971C023B6F7A500F80737 /* Main.storyboard in Resources */,
 			);
@@ -176,23 +235,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9B2EF01160903964DD6F4797 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fitness-app/Pods-fitness-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fitness-app/Pods-fitness-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fitness-app/Pods-fitness-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C1966773053CC732914A871 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-fitness-app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F97971B123B6F7A500F80737 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F94B133623C2DD36007D311C /* FloatingPanelLayout.swift in Sources */,
+				F94B133823C2EA88007D311C /* NewActivityCell.swift in Sources */,
 				F97971BD23B6F7A500F80737 /* ViewController.swift in Sources */,
+				F94B133323C2D442007D311C /* NewActivityFloatingPanelViewController.swift in Sources */,
 				F9CF24E923BAD6A60010AC65 /* Colors.swift in Sources */,
 				F928305223B951A7000A6248 /* DataTypeTileHeaderView.swift in Sources */,
+				F94B132623C2AAA7007D311C /* DatabaseHelper.swift in Sources */,
 				F9EB749A23B9A5A800DEA99B /* GradientView.swift in Sources */,
 				F976BBFD23BB9EFD00850B84 /* TodaysActivitiesTableViewController.swift in Sources */,
 				F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */,
 				F9EB749823B9A33600DEA99B /* TodaysActivitiesViewController.swift in Sources */,
 				F97F17C523B7C4E600505DF2 /* UIViewControllerExt.swift in Sources */,
 				F928305423B9538A000A6248 /* Reusable.swift in Sources */,
+				F90223D623C1153400A5F17E /* Activities.xcdatamodeld in Sources */,
 				F97971B923B6F7A500F80737 /* AppDelegate.swift in Sources */,
 				F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */,
+				F94B133A23C2EBBC007D311C /* UICollectionReusableView.swift in Sources */,
 				F97971BB23B6F7A500F80737 /* SceneDelegate.swift in Sources */,
+				F94B132823C2B77B007D311C /* NewActivityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +442,7 @@
 		};
 		F97971CA23B6F7A600F80737 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEF1CD59DC1F0747402D296F /* Pods-fitness-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -352,6 +461,7 @@
 		};
 		F97971CB23B6F7A600F80737 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC8D41B005E07685FA9A73CC /* Pods-fitness-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -390,6 +500,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F90223D423C1153400A5F17E /* Activities.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F90223D523C1153400A5F17E /* Activities.xcdatamodel */,
+			);
+			currentVersion = F90223D523C1153400A5F17E /* Activities.xcdatamodel */;
+			path = Activities.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F97971AD23B6F7A500F80737 /* Project object */;
 }

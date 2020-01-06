@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-struct Excersize {
+struct Activities {
     var title: String
     var reps: Int
     var sets: Int
@@ -34,14 +35,35 @@ struct Excersize {
     }
 }
 
-class TodaysActivitiesTableViewController: UITableViewController {
+class TodaysActivitiesTableViewController: UITableViewController {    
+    fileprivate lazy var emptyView: UIView = {
+        let view = UIView()
+        
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "No activities for today"
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .subheadline).pointSize, weight: .regular)
+        view.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+        
+        return view
+    }()
     
-    var activities = [Excersize]([
-        Excersize(title: "Barbell Bench Press", reps: 5, sets: 3, duration: 12, color: .blue),
-        Excersize(title: "Flat Bench Dumbbell Press", reps: 5, sets: 3, duration: 12, color: .purple),
-        Excersize(title: "Dips", reps: 5, sets: 3, duration: 12, color: .green),
-        Excersize(title: "Cable Fly", reps: 5, sets: 3, duration: 12, color: .yellow),
-        Excersize(title: "Back Extension", reps: 5, sets: 3, duration: 12, color: .common),
+    @objc func toggleEditMode(_ sender: UITapGestureRecognizer) {
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+    }
+    
+    var activities = [Activities]([
+//        Activities(title: "Barbell Bench Press", reps: 5, sets: 3, duration: 12, color: .blue),
+//        Activities(title: "Flat Bench Dumbbell Press", reps: 5, sets: 3, duration: 12, color: .purple),
+//        Activities(title: "Dips", reps: 5, sets: 3, duration: 12, color: .green),
+//        Activities(title: "Cable Fly", reps: 5, sets: 3, duration: 12, color: .yellow),
+//        Activities(title: "Back Extension", reps: 5, sets: 3, duration: 12, color: .common),
     ])
     
     override func viewDidLoad() {
@@ -52,14 +74,26 @@ class TodaysActivitiesTableViewController: UITableViewController {
         self.tableView.rowHeight = 100
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ActivityCell")
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        createFakeData()
+        fetchActivities()
+        
+        // handle empty data
+        if activities.count == 0 {
+            self.tableView.backgroundView = emptyView
+        }
     }
     
-    func createActivity(activity: Excersize) -> GradientView {
+    fileprivate func createFakeData() {
+        DatabaseHelper.sharedInstance.saveActivity(activity: Activities(title: "Barbell Bench Press", reps: 5, sets: 3, duration: 12, color: .blue))
+    }
+    
+    fileprivate func fetchActivities() {
+        let activities = DatabaseHelper.sharedInstance.getActivities()
+        self.activities = activities
+    }
+    
+    func createActivity(activity: Activities) -> GradientView {
         let workout = GradientView()
         workout.heightAnchor.constraint(equalToConstant: 75).isActive = true
         workout.topColor = activity.grad1!
@@ -132,8 +166,9 @@ class TodaysActivitiesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell")!
         cell.backgroundColor = .none
+        cell.selectionStyle = .none
         
         let view = createActivity(activity: activities[indexPath.row])
         
@@ -146,7 +181,7 @@ class TodaysActivitiesTableViewController: UITableViewController {
             view.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor),
             view.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 5),
         ])
-                
+        
         return cell
     }
     
@@ -154,40 +189,43 @@ class TodaysActivitiesTableViewController: UITableViewController {
         return UITableView.automaticDimension
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print(sourceIndexPath)
+        print(destinationIndexPath)
+    }
+//
+//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return UITableViewCell.EditingStyle.none
+//    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let contextItem = UIContextualAction(style: .destructive, title: "Skip") {  (contextualAction, view, boolValue) in
+//            print("Pressed")
+//        }
+//
+//        contextItem.backgroundColor = UIColor.ActivityColors(color: .common).color[0]
+//        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+//
+//        return swipeActions
+//    }
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
     
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            DatabaseHelper.sharedInstance.deleteActivity(activity: self.activities[indexPath.row])
+            self.activities.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+    }
+    
     
     /*
      // MARK: - Navigation
