@@ -30,7 +30,6 @@ class UICollectionUserInputView: UICollectionViewCell {
 
         let textLabel = UILabel(frame: .zero)
         let background = UIView(frame: .zero)
-
         
         textLabel.numberOfLines = 0
         textLabel.textColor = .systemGray
@@ -40,7 +39,7 @@ class UICollectionUserInputView: UICollectionViewCell {
         let tap = UITapGestureRecognizer(target: self, action: #selector(makeTextInputViewActive))
         background.addGestureRecognizer(tap)
         
-        background.layer.backgroundColor = UIColor.white.cgColor
+        background.layer.backgroundColor = UIColor(named: "defaultCell")?.cgColor
         background.layer.cornerRadius = 10
         background.layer.cornerRadius = 10
         background.layer.shadowColor = UIColor.black.cgColor
