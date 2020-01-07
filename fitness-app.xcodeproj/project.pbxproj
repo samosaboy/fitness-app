@@ -28,6 +28,8 @@
 		F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */; };
 		F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */; };
 		F97F17C523B7C4E600505DF2 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */; };
+		F985AC1723C37417008C91BE /* FloatingPanelBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = F985AC1623C37417008C91BE /* FloatingPanelBehavior.swift */; };
+		F9C5973B23C40F7500478449 /* UICollectionUserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C5973A23C40F7500478449 /* UICollectionUserInputView.swift */; };
 		F9CF24E923BAD6A60010AC65 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CF24E823BAD6A60010AC65 /* Colors.swift */; };
 		F9EB749823B9A33600DEA99B /* TodaysActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */; };
 		F9EB749A23B9A5A800DEA99B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB749923B9A5A800DEA99B /* GradientView.swift */; };
@@ -59,6 +61,8 @@
 		F97971CD23B6FDF800F80737 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		F97F17C223B7C34A00505DF2 /* CurrentActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentActivityViewController.swift; sourceTree = "<group>"; };
 		F97F17C423B7C4E600505DF2 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		F985AC1623C37417008C91BE /* FloatingPanelBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelBehavior.swift; sourceTree = "<group>"; };
+		F9C5973A23C40F7500478449 /* UICollectionUserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionUserInputView.swift; sourceTree = "<group>"; };
 		F9CF24E823BAD6A60010AC65 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F9EB749723B9A33600DEA99B /* TodaysActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysActivitiesViewController.swift; sourceTree = "<group>"; };
 		F9EB749923B9A5A800DEA99B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 				F9CF24E823BAD6A60010AC65 /* Colors.swift */,
 				F94B132523C2AAA7007D311C /* DatabaseHelper.swift */,
 				F94B133523C2DD36007D311C /* FloatingPanelLayout.swift */,
+				F985AC1623C37417008C91BE /* FloatingPanelBehavior.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 				F94B133223C2D442007D311C /* NewActivityFloatingPanelViewController.xib */,
 				F94B133723C2EA88007D311C /* NewActivityCell.swift */,
 				F94B133923C2EBBC007D311C /* UICollectionReusableView.swift */,
+				F9C5973A23C40F7500478449 /* UICollectionUserInputView.swift */,
 			);
 			path = NewActivity;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 				F928305223B951A7000A6248 /* DataTypeTileHeaderView.swift in Sources */,
 				F94B132623C2AAA7007D311C /* DatabaseHelper.swift in Sources */,
 				F9EB749A23B9A5A800DEA99B /* GradientView.swift in Sources */,
+				F9C5973B23C40F7500478449 /* UICollectionUserInputView.swift in Sources */,
 				F976BBFD23BB9EFD00850B84 /* TodaysActivitiesTableViewController.swift in Sources */,
 				F97971CE23B6FDF800F80737 /* ActivitiesViewController.swift in Sources */,
 				F9EB749823B9A33600DEA99B /* TodaysActivitiesViewController.swift in Sources */,
@@ -300,6 +307,7 @@
 				F97F17C323B7C34A00505DF2 /* CurrentActivityViewController.swift in Sources */,
 				F94B133A23C2EBBC007D311C /* UICollectionReusableView.swift in Sources */,
 				F97971BB23B6F7A500F80737 /* SceneDelegate.swift in Sources */,
+				F985AC1723C37417008C91BE /* FloatingPanelBehavior.swift in Sources */,
 				F94B132823C2B77B007D311C /* NewActivityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

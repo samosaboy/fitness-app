@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bBR-Gt-cA2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="muO-yO-cj5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -94,36 +94,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new activity either by manually entering the form or selecting one from below." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRN-7Z-nm0">
-                                <rect key="frame" x="20" y="64" width="374" height="42.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new activity by filling the form below. Be sure to add modifiers to keep your workouts detailed!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRN-7Z-nm0">
+                                <rect key="frame" x="20" y="64" width="374" height="64.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REh-1H-p75">
-                                <rect key="frame" x="20" y="146.5" width="374" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="KaK-Lf-hXZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Add Activity">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
-                                </state>
-                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zRC-F8-CkJ">
+                                <rect key="frame" x="0.0" y="128.5" width="414" height="733.5"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TQa-Z9-bPd">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" name="defaultBackground"/>
                         <constraints>
-                            <constraint firstItem="REh-1H-p75" firstAttribute="top" secondItem="xRN-7Z-nm0" secondAttribute="bottom" constant="40" id="Fkm-Ru-6Uk"/>
+                            <constraint firstItem="zRC-F8-CkJ" firstAttribute="top" secondItem="xRN-7Z-nm0" secondAttribute="bottom" id="EGn-nK-3KU"/>
+                            <constraint firstItem="2Yv-Di-Thz" firstAttribute="bottom" secondItem="zRC-F8-CkJ" secondAttribute="bottom" id="EGu-FG-tkG"/>
                             <constraint firstItem="xRN-7Z-nm0" firstAttribute="trailing" secondItem="2Yv-Di-Thz" secondAttribute="trailing" constant="-20" id="NTC-rC-DHT"/>
                             <constraint firstItem="xRN-7Z-nm0" firstAttribute="leading" secondItem="2Yv-Di-Thz" secondAttribute="leading" constant="20" id="O8R-T1-ROs"/>
-                            <constraint firstItem="REh-1H-p75" firstAttribute="leading" secondItem="2Yv-Di-Thz" secondAttribute="leading" constant="20" id="qgV-kb-BAq"/>
+                            <constraint firstItem="2Yv-Di-Thz" firstAttribute="trailing" secondItem="zRC-F8-CkJ" secondAttribute="trailing" id="QvY-jc-aIn"/>
+                            <constraint firstItem="zRC-F8-CkJ" firstAttribute="leading" secondItem="2Yv-Di-Thz" secondAttribute="leading" id="Yuc-qN-8gp"/>
                             <constraint firstItem="xRN-7Z-nm0" firstAttribute="top" secondItem="2Yv-Di-Thz" secondAttribute="top" constant="20" id="tdk-I0-VOe"/>
-                            <constraint firstItem="2Yv-Di-Thz" firstAttribute="trailing" secondItem="REh-1H-p75" secondAttribute="trailing" constant="20" id="wPK-mk-OUj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Yv-Di-Thz"/>
                     </view>
                     <connections>
-                        <outlet property="newActivityButton" destination="REh-1H-p75" id="0x7-C7-Dy9"/>
+                        <outlet property="newActivityOpeningText" destination="xRN-7Z-nm0" id="GTn-zg-TWN"/>
+                        <outlet property="newActivityUserInputCollectionView" destination="zRC-F8-CkJ" id="pqE-DI-N8X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0p-3X-Tis" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

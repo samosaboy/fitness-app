@@ -19,12 +19,19 @@ class NewActivityCell: UICollectionViewCell {
         super.init(frame: frame)
 
         let textLabel = UILabel(frame: .zero)
+        textLabel.numberOfLines = 0
+        textLabel.textColor = .systemGray
+        textLabel.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .semibold)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(textLabel)
+        self.contentView.layer.cornerRadius = 10
+        
         NSLayoutConstraint.activate([
-            self.contentView.centerXAnchor.constraint(equalTo: textLabel.centerXAnchor),
-            self.contentView.centerYAnchor.constraint(equalTo: textLabel.centerYAnchor),
+            textLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            textLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
+            textLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, constant: -20),
         ])
+        
         self.textLabel = textLabel
         self.reset()
     }
@@ -39,6 +46,6 @@ class NewActivityCell: UICollectionViewCell {
     }
 
     func reset() {
-        self.textLabel.textAlignment = .center
+        self.textLabel.textAlignment = .left
     }
 }

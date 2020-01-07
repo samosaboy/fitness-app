@@ -22,7 +22,7 @@ class CustomFloatingPanelLayout: FloatingPanelLayout {
         switch position {
             case .full: return 0 // A top inset from safe area
             case .half: return 216.0 // A bottom inset from the safe area/
-            case .tip: return 60 // A bottom inset from the safe area
+            case .tip: return 55 // A bottom inset from the safe area
             default: return nil // Or `case .hidden: return nil`
         }
     }
