@@ -14,6 +14,16 @@ class NewActivityCell: UICollectionViewCell {
     static var identifier: String = "NewActivityCell"
 
     weak var textLabel: UILabel!
+    
+    override var isHighlighted: Bool {
+        didSet {
+            if self.isHighlighted {
+                alpha = CGFloat(0.5)
+            } else {
+                alpha = CGFloat(1)
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

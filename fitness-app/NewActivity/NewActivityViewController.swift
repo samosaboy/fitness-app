@@ -16,38 +16,43 @@ struct ActivityAttribute {
 }
 
 class NewActivityViewController: UIViewController, UISearchBarDelegate, FloatingPanelControllerDelegate {
-    var fpc: FloatingPanelController!
+    lazy var fpc: FloatingPanelController = {
+        // Initialize a `FloatingPanelController` object.
+        let fpc = FloatingPanelController()
+        fpc.surfaceView.backgroundColor = .clear
+        
+        if #available(iOS 11, *) {
+            fpc.surfaceView.cornerRadius = 9.0
+        } else {
+            fpc.surfaceView.cornerRadius = 0.0
+        }
+        
+        fpc.surfaceView.shadowHidden = false
+        return fpc
+    }()
+    
     var contentVC: NewActivityFloatingPanelViewController!
     
+    static let sharedInstance = NewActivityViewController()
+    
     @IBOutlet weak var newActivityOpeningText: UILabel!
-    @IBOutlet weak var newActivityUserInputCollectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var activityAttributes = [ActivityAttribute]([
         ActivityAttribute(title: "Name", placeholder: "Enter a name", data: nil)
     ])
     
-    lazy var addButton: UICollectionViewCell = {
-        let cell = UICollectionViewCell()
-        let button = UIButton()
-        button.setTitle("Add", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .systemBlue
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.layer.cornerRadius = 15
-        button.setImage(UIImage(systemName: "plus.circle.fill", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title3)), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-        button.backgroundColor = UIColor(named: "appButtonAlphaBlue")
-        button.addTarget(self, action: #selector(expandFPC), for: .touchUpInside)
+    func createActivityAttribute(title: String) {
+//        collapseFPC()
         
-        NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: cell.leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: cell.trailingAnchor),
-            button.topAnchor.constraint(equalTo: cell.topAnchor),
-            button.bottomAnchor.constraint(equalTo: cell.bottomAnchor),
-        ])
-        
-        return cell
-    }()
+//        if let fpc = self.fpc {
+//            print(fpc)
+//        }
+//        activityAttributes.append(ActivityAttribute(title: title!, placeholder: "Enter a \(title!.lowercased())", data: nil))
+//        let newIndexPath = IndexPath(item: activityAttributes.count, section: 0)
+//        self.collectionView.insertItems(at: [newIndexPath])
+//        print(self.collectionView)
+    }
     
     func createActivityInput() -> UIView {
         let view = UIView()
@@ -88,55 +93,29 @@ class NewActivityViewController: UIViewController, UISearchBarDelegate, Floating
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "New Activity"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissNewActivityViewController(_:)))
         navigationController?.navigationBar.prefersLargeTitles = true
-                
-        newActivityUserInputCollectionView.layer.backgroundColor = .none
-        newActivityUserInputCollectionView.register(UICollectionUserInputView.self, forCellWithReuseIdentifier: UICollectionUserInputView.identifier)
-        newActivityUserInputCollectionView.dataSource = self
-        newActivityUserInputCollectionView.delegate = self
         
-        // Initialize a `FloatingPanelController` object.
-        fpc = FloatingPanelController(delegate: self)
-        
-        fpc.surfaceView.backgroundColor = .clear
-        
-        if #available(iOS 11, *) {
-            fpc.surfaceView.cornerRadius = 9.0
-        } else {
-            fpc.surfaceView.cornerRadius = 0.0
-        }
-        
-        fpc.surfaceView.shadowHidden = false
+        fpc.delegate = self
         
         contentVC = NewActivityFloatingPanelViewController()
         fpc.set(contentViewController: contentVC)
         fpc.track(scrollView: contentVC.collectionView)
         fpc.addPanel(toParent: self)
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-                
+        collectionView.layer.backgroundColor = .none
+        collectionView.register(UICollectionViewButtonFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: UICollectionViewButtonFooter.identifier)
+        collectionView.register(UICollectionUserInputView.self, forCellWithReuseIdentifier: UICollectionUserInputView.identifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+
         
-        //        let nameInput = createActivityInput()
-        //
-        //        view.addSubview(nameInput)
-        //
-        //        newActivityButton.translatesAutoresizingMaskIntoConstraints = false
-        //
-        //        NSLayoutConstraint.activate([
-        //            nameInput.leadingAnchor.constraint(equalTo: newActivityOpeningText.leadingAnchor),
-        //            nameInput.trailingAnchor.constraint(equalTo: newActivityOpeningText.trailingAnchor),
-        //            nameInput.topAnchor.constraint(equalTo: newActivityOpeningText.bottomAnchor, constant: 20),
-        //            nameInput.heightAnchor.constraint(equalToConstant: 100),
-        //
-        //            newActivityButton.leadingAnchor.constraint(equalTo: newActivityOpeningText.leadingAnchor),
-        //            newActivityButton.trailingAnchor.constraint(equalTo: newActivityOpeningText.trailingAnchor),
-        //            newActivityButton.topAnchor.constraint(equalTo: nameInput.bottomAnchor, constant: 20),
-        //            newActivityButton.heightAnchor.constraint(equalToConstant: 50),
-        //
-        //        ])
+        // FIXME: THiS SEEMS TO BREAK CELL TAP ON THE FLOATINGPANEL AS WELL
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        view.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
@@ -177,6 +156,10 @@ class NewActivityViewController: UIViewController, UISearchBarDelegate, Floating
         fpc.move(to: .full, animated: true)
     }
     
+    @objc func collapseFPC() {
+        fpc.move(to: .tip, animated: true)
+    }
+    
     func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
         if vc.position == .full {
             contentVC.searchBar.setShowsCancelButton(false, animated: true)
@@ -186,7 +169,7 @@ class NewActivityViewController: UIViewController, UISearchBarDelegate, Floating
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        newActivityUserInputCollectionView.collectionViewLayout.invalidateLayout()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -199,15 +182,41 @@ extension NewActivityViewController: UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionUserInputView.identifier, for: indexPath) as! UICollectionUserInputView
         let attribute = activityAttributes[indexPath.item]
         cell.textLabel.text = attribute.title.uppercased()
-//        cell.textInputView.placeholder = attribute.placeholder
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets (top: 20, left: 10, bottom: 20, right: 10)
+        return UIEdgeInsets (top: 20, left: 0, bottom: 20, right: 0)
     }
     
-     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width - 20, height: 75)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+
+        // Here you can set dynamic height for the individual cell according to your content size.
+        let referenceHeight: CGFloat = 75 // Approximate height of your cell
+
+        let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
+            - sectionInset.left
+            - sectionInset.right
+            - collectionView.contentInset.left
+            - collectionView.contentInset.right
+
+        return CGSize(width: referenceWidth, height: referenceHeight)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 10, height: 50)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionFooter:
+            let sectionFooter = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: UICollectionViewButtonFooter.identifier, for: indexPath) as? UICollectionViewButtonFooter
+            sectionFooter?.button.addTarget(self, action: #selector(expandFPC), for: .touchUpInside)
+            return sectionFooter!
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
 }

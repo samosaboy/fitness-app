@@ -13,6 +13,8 @@ class UICollectionViewSectionHeader: UICollectionReusableView {
     
     static var identifier: String = "SectionHeader"
     
+    var contentView: UIView!
+    
     var label: UILabel = {
         let label: UILabel = UILabel()
         label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold)
@@ -22,6 +24,7 @@ class UICollectionViewSectionHeader: UICollectionReusableView {
     
     var sectionDescription: UILabel = {
         let label: UILabel = UILabel()
+        label.sizeToFit()
         label.numberOfLines = 0
         label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)
@@ -31,21 +34,32 @@ class UICollectionViewSectionHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        addSubview(label)
-        addSubview(sectionDescription)
+        contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(contentView)
+                
+        contentView.addSubview(label)
+        contentView.addSubview(sectionDescription)
         
         label.translatesAutoresizingMaskIntoConstraints = false
         sectionDescription.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: self.topAnchor),
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            contentView.topAnchor.constraint(equalTo: self.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+
+            label.topAnchor.constraint(equalTo: contentView.topAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: sectionDescription.topAnchor),
             
-            sectionDescription.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5),
+            sectionDescription.topAnchor.constraint(equalTo: label.bottomAnchor),
             sectionDescription.leadingAnchor.constraint(equalTo: label.leadingAnchor),
             sectionDescription.trailingAnchor.constraint(equalTo: label.trailingAnchor),
+            sectionDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
         
     }

@@ -20,14 +20,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for modifiers" translatesAutoresizingMaskIntoConstraints="NO" id="XVg-8p-h8Q">
-                    <rect key="frame" x="0.0" y="64" width="414" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="fG9-I4-A1y"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="64" width="414" height="56"/>
                     <textInputTraits key="textInputTraits" returnKeyType="go"/>
                 </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PH5-tq-EWE">
-                    <rect key="frame" x="0.0" y="128" width="414" height="734"/>
+                    <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wCf-qB-SEy">
                         <size key="itemSize" width="100" height="100"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>

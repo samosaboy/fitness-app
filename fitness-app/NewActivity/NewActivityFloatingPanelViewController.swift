@@ -37,13 +37,26 @@ class NewActivityFloatingPanelViewController: UIViewController, UICollectionView
         
         view.backgroundColor = .systemGray6
         
-        collectionView.backgroundColor = .systemGray6
+        collectionView.backgroundColor = .none
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(NewActivityCell.self, forCellWithReuseIdentifier: NewActivityCell.identifier)
-        collectionView.register(UICollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewSectionHeader.identifier)
         collectionView.dragInteractionEnabled = true
         collectionView.dragDelegate = self
+        collectionView.delaysContentTouches = false
+        
+        collectionView.register(NewActivityCell.self, forCellWithReuseIdentifier: NewActivityCell.identifier)
+        collectionView.register(UICollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewSectionHeader.identifier)
+        
+        if let collectionViewLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            collectionViewLayout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 40, right: 20)
+            collectionViewLayout.invalidateLayout()
+        }
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -103,11 +116,16 @@ class NewActivityFloatingPanelViewController: UIViewController, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 80)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets (top: 0, left: 20, bottom: 40, right: 20)
+        let indexPath = IndexPath(item: 0, section: section)
+        
+        if let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath) as? UICollectionViewSectionHeader {
+            return headerView.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width,
+                                                             height: UIView.layoutFittingExpandedSize.height),
+                                                      withHorizontalFittingPriority: .required,
+                                                      verticalFittingPriority: .fittingSizeLevel)
+        }
+        
+        return CGSize(width: 1, height: 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -117,11 +135,11 @@ class NewActivityFloatingPanelViewController: UIViewController, UICollectionView
         let totalSpacing = (2 * self.spacing) + ((numberOfItemsPerRow - 1) * spacingBetweenCells) //Amount of total spacing in a row
         
         if let collection = self.collectionView{
-            let width = (collection.bounds.width - totalSpacing)/numberOfItemsPerRow
+            let width = (collection.bounds.width - totalSpacing) / numberOfItemsPerRow
             return CGSize(width: width, height: width)
+        } else {
+            return CGSize(width: 0, height: 0)
         }
-        
-        return CGSize(width: 0, height: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
@@ -131,6 +149,12 @@ class NewActivityFloatingPanelViewController: UIViewController, UICollectionView
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let temp = modifiers.remove(at: sourceIndexPath.item)
         modifiers.insert(temp, at: destinationIndexPath.item)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! NewActivityCell?
+//        NewActivityViewController.sharedInstance.collapseFPC()
+        NewActivityViewController.sharedInstance.createActivityAttribute(title: cell!.textLabel.text!)
     }
 }
 
